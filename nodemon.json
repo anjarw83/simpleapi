@@ -1,0 +1,15 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "verbose": true,
+  "execMap": {
+    "ts": "node --require ts-node/register"
+  },
+  "watch": ["src/"],
+  "env": {
+    "NODE_ENV": "dev",
+    "GOOGLE_CLIENT_ID": "781816603387-798ds3jqc2rlb760eebv5oc5aos5dlr2.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_SECRET": "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\n"
+  },
+  "ext": "js,json,ts"
+}

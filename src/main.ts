@@ -1,6 +1,9 @@
 import { Application, Request, Response } from "express";
 import * as express from "express";
+import * as session from "express-session"
 import { logging } from "./logger/logManager";
+import routes from "./routes/routes";
+import * as passport from "passport";
 
 const logger = logging.getLogger("core");
 const PORT = 8000;
@@ -18,10 +21,21 @@ export const init = () => {
   // rest of the code remains same
   const app: Application = express();
 
-
   // Body parsing Middleware
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(
+    session({
+      resave: false,
+      saveUninitialized: true,
+      secret: "SECRET"
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.use(routes);
 
   app.get(
     "/",
