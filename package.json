@@ -7,7 +7,8 @@
     "test": "jest --verbose",
     "build": "tsc",
     "start": "npm run build && node dist/main.js",
-    "dev:watch": "nodemon --watch src -e ts --exec npm run start"
+    "dev:watch": "nodemon --watch src -e ts --exec npm run start",
+    "dev": "nodemon --watch native -e js --exec node native/app.js"
   },
   "keywords": [
     "api",
@@ -16,9 +17,13 @@
   "author": "Anjar Widiyatmoko ( anjar.office@gmail.com )",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^9.0.2",
     "express": "^4.10.8",
     "express-session": "^1.17.2",
     "mongodb": "^4.2.0",
+    "mongoose": "^6.1.0",
+    "ejs": "^3.1.6",
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0"
   },
