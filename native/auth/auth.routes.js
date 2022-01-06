@@ -12,9 +12,13 @@ router.get(
   "/google/redirect",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect("/log");
+    res.redirect("/auth/success");
   }
 );
+
+router.get("/success", (req, res) => {
+  res.status(200).json("Login Success");
+});
 
 router.get("/logout", (req, res) => {
   req.logout();
