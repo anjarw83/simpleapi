@@ -1,7 +1,7 @@
 // import all the things we need
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 require("mongoose");
-const User = require("../models/users");
+const User = require("../users/user.model");
 
 const GOOGLE_CLIENT_ID =
   "781816603387-798ds3jqc2rlb760eebv5oc5aos5dlr2.apps.googleusercontent.com";
