@@ -11,6 +11,8 @@ router.get("/", async (req, res) => {
 });
 
 router.patch("/:id/watchlist", jsonParser, async (req, res) => {
+  console.log(`>>> Entering updateWatchlist : ${JSON.stringify(req.params)}`);
+  console.log(`>>> Entering updateWatchlistUpdateTo : ${JSON.stringify(req.body.params)}`);
   await stockService.updateWatchlist(req);
 
   res.status(201).json({ data: "success" });

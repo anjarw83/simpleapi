@@ -11,6 +11,7 @@ const getStock = async request => {
 const updateWatchlist = async request => {
   const id = request.params.id;
   const status = request.body.watchlist;
+  console.log('Status ', status);
   return stockRepository.toggleWatchlist(id, status);
 };
 

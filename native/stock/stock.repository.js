@@ -1,7 +1,8 @@
 const Stock = require("./stock.model");
 
-const getStock = async (search = null, page = null, limit = 20) => {
-  const skip = !page || page === 1 ? 0 : page;
+const getStock = async (search = null, page = 1, limit = 20) => {
+  const skip =
+    !page || Number(page) === 1 ? 0 : (Number(page) - 1) * Number(limit);
   let result = null;
   let query = {};
   if (search) {
@@ -12,7 +13,8 @@ const getStock = async (search = null, page = null, limit = 20) => {
         },
         {
           description: {
-            $regex: `.*${search}.*`
+            $regex: `.*${search}.*`,
+            $options: "i"
           }
         },
         { displaySymbol: search },
