@@ -5,7 +5,7 @@ const create = async watchlist => {
 };
 
 const getByUserId = async userId => {
-  return WatchlistModel.find({ userId: userId });
+  return WatchlistModel.findOne({ userId: userId });
 };
 
 const updateByUserId = async (userId, watchlists) => {
@@ -29,7 +29,15 @@ const addItems = async (userId, stock) => {
   };
   const options = { new: true };
 
-  await WatchlistModel.findOneAndUpdate(filter, query, options);
+  let watchlist = await WatchlistModel.findOneAndUpdate(filter, query, options);
+  if (!watchlist) {
+    const data = {
+      userId: userId,
+      items: [stock]
+    };
+    const newWatchlist = await WatchlistModel.create(data);
+    return !!newWatchlist;
+  }
 };
 
 const removeItems = async (userId, stockId) => {
@@ -37,13 +45,18 @@ const removeItems = async (userId, stockId) => {
   const query = {
     $pull: {
       items: {
-        id: stockId
+        _id: new Object(stockId)
       }
     }
   };
   const options = { new: true };
 
-  await WatchlistModel.findOneAndUpdate(filter, query, options);
+  const result = await WatchlistModel.findOneAndUpdate(filter, query, options);
+  if (result.items.length === 0) {
+    await WatchlistModel.findOneAndDelete({
+      _id: new Object(result.id)
+    });
+  }
 };
 
 const watchlistRepository = {

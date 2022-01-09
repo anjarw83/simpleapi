@@ -12,7 +12,7 @@
     "PORT": 8000,
     "SECRET": "0123456789",
     "GOOGLE_CLIENT_ID": "781816603387-798ds3jqc2rlb760eebv5oc5aos5dlr2.apps.googleusercontent.com",
-    "GOOGLE_CLIENT_SECRET": "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\n"
+    "GOOGLE_CLIENT_SECRET": "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"
   },
   "ext": "js,json,ts"
 }

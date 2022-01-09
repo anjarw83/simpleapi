@@ -32,7 +32,7 @@ const getStock = async (search = null, page = 1, limit = 20) => {
   return result;
 };
 
-const getStockById = async id => await Stock.findOne({ id });
+const getStockById = async id => await Stock.findOne({ _id: new Object(id) });
 
 const toggleWatchlist = async (id, watchlist) => {
   const filter = { _id: new Object(id) };

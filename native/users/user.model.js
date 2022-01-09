@@ -20,6 +20,9 @@ const UserSchema = new mongoose.Schema({
   image: {
     type: String
   },
+  token: {
+    type: String
+  },
   email: {
     type: String,
     required: true

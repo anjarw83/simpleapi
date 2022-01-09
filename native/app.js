@@ -4,7 +4,7 @@ const passport = require("passport");
 const session = require("express-session");
 const routes = require("./routes/index");
 const path = require("path");
-require("./auth/passport")(passport);
+const googlePassport = require("./auth/googlePassport/passport");
 
 var app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,15 +24,15 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
-    // store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
+
+googlePassport.init(passport);
 
 // // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes);
-// app.use("/auth", require("./auth/auth.routes"));
 
 app.listen(PORT, console.log(`listening at ${PORT}`));
