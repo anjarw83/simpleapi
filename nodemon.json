@@ -12,7 +12,9 @@
     "PORT": 8000,
     "SECRET": "0123456789",
     "GOOGLE_CLIENT_ID": "781816603387-798ds3jqc2rlb760eebv5oc5aos5dlr2.apps.googleusercontent.com",
-    "GOOGLE_CLIENT_SECRET": "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"
+    "GOOGLE_CLIENT_SECRET": "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",
+    "TOKEN_KEY": "MyAweSomeToken",
+    "EXPIRES_IN": 6000
   },
   "ext": "js,json,ts"
 }

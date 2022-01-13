@@ -2,7 +2,7 @@
 const express = require("express");
 const passport = require("passport");
 const UserModel = require("../users/user.model");
-const { ensureAuth } = require("../middleware/auth");
+const { ensureAuth, createJwtToken } = require("../middleware/auth");
 const router = express.Router();
 const authService = require("../auth/auth.service");
 
@@ -25,8 +25,12 @@ router.get("/google/access-token", ensureAuth, async (req, res) => {
 });
 
 router.get("/success", ensureAuth, async (req, res) => {
-  const authProfile = authService.successHandler(req.user);
-  res.status(200).json(authProfile);
+  const token = createJwtToken(req.user);
+  res.status(200).json({ accessToken: token });
+});
+
+router.get("/info", ensureAuth, async (req, res) => {
+  res.status(200).json(req.session.passport.user);
 });
 
 router.get("/logout", (req, res) => {
